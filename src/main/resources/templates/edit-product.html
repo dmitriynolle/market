@@ -20,31 +20,31 @@
 
 <html>
 
-<body>
+<body class="text-center">
 
 <div th:replace="~{navigation :: navi(AddProduct)}"/>
 
-<div class="container mt-3">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <header class="card-header">
-                    <h4 class="card-title mt-2"><span th:text="${product.title == null} ? 'Добавление товара' : 'Изменение товара'"></span></h4>
-                </header>
-                <article class="card-body">
-                    <form th:action="@{/products/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
+                <div class="div_center">
+                    <form th:action="@{/products/edit}" th:object="${product}" method="post" enctype="multipart/form-data" class="form-signin shadow p-3 bg-white new-rounded">
                         <input th:field="*{id}" type="hidden" class="form-control">
-
+                        <h4 class="card-title mt-2"><span th:text="${product.title == null} ? 'Добавление товара' : 'Изменение товара'"></span></h4>
                         <div class="form-row">
-                            <div class="col form-group">
+                            <div class="col-md-12 form-group">
                                 <label>Наименование</label>
                                 <input th:field="*{title}" type="text" class="form-control" placeholder="">
                                 <small class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"> </small>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="col form-group">
                                 <label>Цена</label>
                                 <input th:field="*{price}" type="number" class="form-control" placeholder="">
                                 <small class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"> </small>
+                            </div>
+                            <div class="col form-group">
+                                <label>Количество</label>
+                                <input th:field="*{quantity}" type="number" class="form-control" placeholder="">
+                                <small class="error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"> </small>
                             </div>
                         </div>
 
@@ -95,11 +95,8 @@
                             <button type="submit" name="addProduct" class="btn btn-primary btn-block">Сохранить</button>
                         </div>
                     </form>
-                </article>
-            </div>
-        </div>
-    </div>
-</div>
+                </div>
+
 </body>
 </html>
 
