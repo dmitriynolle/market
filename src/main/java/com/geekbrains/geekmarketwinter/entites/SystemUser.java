@@ -5,6 +5,7 @@ import com.geekbrains.geekmarketwinter.validation.FieldMatch;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,4 +38,8 @@ public class SystemUser {
     @Size(min = 1, message = "is required")
     @Email
     private String email;
+
+    @NotNull(message = "is required")
+    @Column(name = "phone")
+    private String phone;
 }

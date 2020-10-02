@@ -1,10 +1,12 @@
 package com.geekbrains.geekmarketwinter.controllers;
 
+import com.geekbrains.geekmarketwinter.entites.Category;
 import com.geekbrains.geekmarketwinter.entites.Product;
 import com.geekbrains.geekmarketwinter.entites.ProductImage;
 import com.geekbrains.geekmarketwinter.services.CategoryService;
 import com.geekbrains.geekmarketwinter.services.ImageSaverService;
 import com.geekbrains.geekmarketwinter.services.ProductService;
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql:8.0.17
+    environment:
+      MYSQL_ROOT_PASSWORD: password1!
+      MYSQL_DATABASE: winter_market
+    ports:
+      - "3308:3306"
+  back:
+    build: .
+    ports:
+      - "8181:8181"

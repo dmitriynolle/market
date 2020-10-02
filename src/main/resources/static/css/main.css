@@ -106,11 +106,15 @@ body{
     min-height: 50px;
 }
 .card-price{
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 }
 .shop_product_photo{
     margin: auto;
     padding: 30px;
+}
+.admin-form{
+    flex-grow: 1;
+    margin-right: 10px;
 }

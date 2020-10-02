@@ -42,8 +42,11 @@
                     <h5 class="card-title" th:text="${product.title}"></h5>
                     <div class="card-text" th:text="${product.shortDescription}"></div>
                     <div class="card-price">
-                        <span>Price: <span th:text="${product.price}"></span> P</span>
-                        <a th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn my-btn">Add cart</a>
+                        <span><h3 class="m-0">Price: <span th:text="${product.price}"></span> &#8381;</h3></span>
+                        <div style="display: flex;align-items: center;">
+                            <span class="small pr-3" th:text="'в наличии ' + ${product.quantity}"></span>
+                            <a th:if="${product.quantity} !=0" th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn my-btn">Add cart</a>
+                        </div>
                     </div>
                 </div>
             </div>

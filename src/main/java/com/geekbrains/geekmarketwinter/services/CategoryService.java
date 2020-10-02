@@ -1,6 +1,7 @@
 package com.geekbrains.geekmarketwinter.services;
 
 import com.geekbrains.geekmarketwinter.entites.Category;
+import com.geekbrains.geekmarketwinter.entites.Product;
 import com.geekbrains.geekmarketwinter.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,9 @@ public class CategoryService {
 
     public List<Category> getAllCategories() {
         return (List<Category>)categoryRepository.findAll();
+    }
+
+    public void addCategory(Category category) {
+        categoryRepository.save(category);
     }
 }

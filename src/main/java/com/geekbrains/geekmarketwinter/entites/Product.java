@@ -51,6 +51,11 @@ public class Product implements Serializable {
     @Digits(integer = 10, fraction = 2)
     private double price;
 
+    @Column(name = "quantity")
+    @NotNull(message = "не может быть пустым")
+    @DecimalMin(value = "1", message = "минимальное значение 1")
+    private Long quantity;
+
     @Column(name = "create_at")
     @CreationTimestamp
     private LocalDateTime createAt;

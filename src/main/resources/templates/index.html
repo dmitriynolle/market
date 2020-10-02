@@ -27,7 +27,7 @@
             <h5 class="card-title" th:text="${product.title}"></h5>
             <div class="card-text" th:text="${product.shortDescription}"></div>
             <div class="card-price">
-                <span>Price: <span th:text="${product.price}"></span> P</span>
+                <span>Price: <span th:text="${product.price}"></span> &#8381;</span>
                 <a th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn my-btn">Add cart</a>
             </div>
         </div>
