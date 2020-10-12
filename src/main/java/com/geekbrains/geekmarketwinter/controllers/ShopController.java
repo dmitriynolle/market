@@ -1,9 +1,6 @@
 package com.geekbrains.geekmarketwinter.controllers;
 
-import com.geekbrains.geekmarketwinter.entites.DeliveryAddress;
-import com.geekbrains.geekmarketwinter.entites.Order;
-import com.geekbrains.geekmarketwinter.entites.Product;
-import com.geekbrains.geekmarketwinter.entites.User;
+import com.geekbrains.geekmarketwinter.entites.*;
 import com.geekbrains.geekmarketwinter.repositories.specifications.ProductSpecs;
 import com.geekbrains.geekmarketwinter.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +128,18 @@ public class ShopController {
         order.setPhoneNumber(orderFromFrontend.getPhoneNumber());
         order.setDeliveryDate(LocalDateTime.now().plusDays(7));
         order.setDeliveryPrice(0.0);
-        order = orderService.saveOrder(order);
+        List<OrderItem> items = order.getOrderItems();
+        for (OrderItem item: items) {
+            Product product = productService.getProductById(item.getProduct().getId());
+            if (product.getQuantity() >= item.getQuantity()){
+                product.setQuantity(product.getQuantity() - item.getQuantity());
+                productService.saveProduct(product);
+//                order = orderService.saveOrder(order);
+            }
+            else{
+                model.addAttribute( "s", 1);
+            }
+        }
         model.addAttribute("order", order);
         return "order-filler";
     }
