@@ -22,6 +22,7 @@
 
 <div class="container mt-3">
     <br>
+    <div class="shadow alert alert-danger mb-3" th:if="${s} != null">Данного товара не достаточно на складе</div>
     <h1>Оформление заказа</h1>
     <form th:action="@{/shop/order/confirm}" th:object="${order}" method="post" class="form-horizontal">
         <table class="table table-hover">

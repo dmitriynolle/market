@@ -19,7 +19,7 @@
 <div th:replace="~{navigation :: navi(Shop)}"/>
 <div class="product">
     <div class="mt-5" style="min-width: 300px">
-        <div class=" shadow p-4 mr-5 bg-white new-rounded" style="position: fixed">
+        <div class=" shadow p-4 mr-5 mt-5 bg-white new-rounded" style="position: fixed">
             <h1 th:text="Фильтры"/>
             <form th:action="@{/shop}" method="get">
                 <input hidden th:value="${page}" th:name="page">
@@ -33,7 +33,7 @@
             </form>
         </div>
     </div>
-        <div class="new_card_product">
+        <div class="new_card_product mt-5">
             <div class="card card_row shadow new-rounded" th:each="product : ${products}">
                 <div class="shop_product_photo">
                     <img th:if="${product.images.size() > 0}" th:src="@{'/images/' + ${product.images[0].path}}" >
