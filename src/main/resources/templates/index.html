@@ -22,7 +22,7 @@
 <div class="new_card_product">
     <div class="card shadow new-rounded" style="width: 18rem; position: relative"  th:each="product, state : ${products}" th:if="${state.count<5}">
         <img th:src="@{img/new.png}" style="position: absolute; top: 5px; left: 5px; width: 100px">
-        <img class="card-img-top" th:if="${product.images.size() > 0}" th:src="@{'/images/' + ${product.images[0].path}}">
+        <img class="card-img-top" th:if="${product.images.size() > 0}" th:src="@{'img/images/' + ${product.images[0].path}}">
         <div class="card-body">
             <h5 class="card-title" th:text="${product.title}"></h5>
             <div class="card-text" th:text="${product.shortDescription}"></div>

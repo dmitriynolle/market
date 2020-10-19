@@ -120,3 +120,8 @@ body{
     flex-grow: 1;
     margin-right: 10px;
 }
+.weightCard{
+    border: 0;
+    color: red;
+    background-color: #f8f9fa;
+}

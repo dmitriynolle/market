@@ -84,6 +84,7 @@ public class ShopController {
         }
 
         Page<Product> products = productService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, spec);
+        Message message = new Message();
 
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", currentPage);
@@ -94,6 +95,7 @@ public class ShopController {
         model.addAttribute("min", min);
         model.addAttribute("max", max);
         model.addAttribute("word", word);
+        model.addAttribute("message", message.toString());
         return "shop-page";
     }
 
