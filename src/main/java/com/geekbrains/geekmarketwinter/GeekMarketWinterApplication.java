@@ -1,24 +1,28 @@
 package com.geekbrains.geekmarketwinter;
 
-import org.apache.log4j.Logger;
+import com.geekbrains.geekmarketwinter.utils.RabbitProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GeekMarketWinterApplication {
+public class GeekMarketWinterApplication implements CommandLineRunner {
+	private RabbitProvider rabbitProvider;
+
+	@Autowired
+	public void setRabbitProvider(RabbitProvider rabbitProvider) {
+		this.rabbitProvider = rabbitProvider;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(GeekMarketWinterApplication.class, args);
 	}
 
-//	private TestRepository repository;
-//
-//	public GeekMarketWinterApplication(@Autowired TestRepository repository) {
-//		this.repository = repository;
-//	}
-//
-//	@Override
-//	public void run(String... args) throws Exception {
-//		List<ProductDTO> products = repository.getProducts(1).stream().collect(toCollection(ArrayList::new));
-//		System.out.println(products);
-//	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		rabbitProvider.openConnect();
+		rabbitProvider.receiverMsg();
+	}
 }
