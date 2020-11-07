@@ -56,6 +56,8 @@ public class OrderService {
         return orderOut;
     }
 
+    public List<Order>findByUser_id(Long id){return orderRepository.findAllByUser_id(id);}
+
     public Order changeOrderStatus(Order order, Long statusId) {
         order.setStatus(orderStatusService.getStatusById(statusId));
         return saveOrder(order);

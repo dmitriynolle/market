@@ -127,6 +127,13 @@ public class ShopController {
         model.addAttribute("deliveryAddresses", deliveryAddresses);
         return "order-filler";
     }
+    @GetMapping("/order/buy")
+    public String orderClose(HttpServletRequest httpServletRequest){
+        shoppingCartService.resetCart(httpServletRequest.getSession());
+        Message message = new Message();
+        message.setName();
+        return "buy-confirmation";
+    }
 
     @PostMapping("/order/confirm")
     public String orderConfirm(Model model, HttpServletRequest httpServletRequest, @ModelAttribute(name = "order") Order orderFromFrontend, Principal principal) {
@@ -145,7 +152,8 @@ public class ShopController {
             if (product.getQuantity() >= item.getQuantity()){
                 product.setQuantity(product.getQuantity() - item.getQuantity());
                 productService.saveProduct(product);
-//                order = orderService.saveOrder(order);
+                order = orderService.saveOrder(order);
+                mailService.sendOrderMail(order);
             }
             else{
                 model.addAttribute( "s", 1);

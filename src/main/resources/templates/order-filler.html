@@ -58,7 +58,7 @@
             <br>
             <div class="col-sm-6 controls">
                 <button type="submit" class="btn btn-primary">Готово</button>
-                <button class="btn btn-secondary" th:href="@{/shop}">Вернуться в магазин</button>
+                <a class="btn btn-secondary" th:href="@{/shop}">Вернуться в магазин</a>
             </div>
         </div>
         <div th:unless="${!order.confirmed}">
@@ -69,8 +69,8 @@
             <br>
             <div class="col-sm-6 controls">
                 <!--<a class="btn btn-primary" th:href="@{'/shop/order/result/' + ${order.id}}">Оплатить</a>-->
-                <a class="btn btn-primary" th:href="@{'/paypal/buy'}">Оплатить</a>
-                <button class="btn btn-secondary" th:href="@{/shop}">Вернуться на страницу магазина</button>
+                <a class="btn btn-primary" th:href="@{'/shop/order/buy'}">Оплатить</a>
+                <a class="btn btn-secondary" th:href="@{/shop}">Вернуться на страницу магазина</a>
             </div>
         </div>
     </form>
