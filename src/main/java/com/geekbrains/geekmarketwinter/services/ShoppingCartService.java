@@ -1,5 +1,6 @@
 package com.geekbrains.geekmarketwinter.services;
 
+import com.geekbrains.geekmarketwinter.entites.OrderItem;
 import com.geekbrains.geekmarketwinter.entites.Product;
 import com.geekbrains.geekmarketwinter.utils.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,18 @@ public class ShoppingCartService {
     }
 
     public void removeFromCart(HttpSession session, Product product) {
-        ShoppingCart cart = getCurrentCart(session);
-        cart.remove(product);
+        ShoppingCart carts = getCurrentCart(session);
+        for (OrderItem cart : carts.getItems()) {
+            if(cart.getProduct().getId() == product.getId() && cart.getQuantity() > 1){
+                cart.setQuantity(cart.getQuantity() - 1);
+                cart.setTotalPrice(cart.getTotalPrice()-cart.getItemPrice());
+                carts.setTotalCost(carts.getTotalCost()-cart.getItemPrice());
+                break;
+            } else if(cart.getProduct().getId() == product.getId() && cart.getQuantity() == 1){
+                carts.remove(product);
+                break;
+            }
+        }
     }
 
     public void setProductCount(HttpSession session, Long productId, Long quantity) {

@@ -16,4 +16,9 @@ public class Message {
     public String toString() {
         return name + "";
     }
+
+    public int nameMinus() {
+        name--;
+        return name;
+    }
 }
