@@ -41,9 +41,11 @@
         </div>
     </div>
         <div class="new_card_product mt-5">
+
             <div class="card card_row shadow new-rounded" th:each="product : ${products}">
+                <a th:href="@{'/shop/product/' + ${product.id}}">
                 <div class="shop_product_photo">
-                    <img th:if="${product.images.size() > 0}" th:src="@{'img/images/' + ${product.images[0].path}}" >
+                    <img th:if="${product.images.size() > 0}" th:src="@{'/img/images/' + ${product.images[0].path}}" >
                 </div>
                 <div class="card-body">
                     <h5 class="card-title" th:text="${product.title}"></h5>
@@ -56,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
 
         </div>

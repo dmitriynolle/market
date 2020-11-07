@@ -99,6 +99,15 @@ public class ShopController {
         return "shop-page";
     }
 
+    @GetMapping("/product/{id}")
+    public String productCard(Model model, @PathVariable("id") Long id, HttpServletRequest httpServletRequest){
+        Message message = new Message();
+        model.addAttribute("product", productService.getProductById(id));
+        model.addAttribute("message", message.toString());
+        model.addAttribute("referet", httpServletRequest.getHeader("referer"));
+        return "product-page";
+    }
+
     @GetMapping("/cart/add/{id}")
     public String addProductToCart(Model model, @PathVariable("id") Long id, HttpServletRequest httpServletRequest) {
         shoppingCartService.addToCart(httpServletRequest.getSession(), id);

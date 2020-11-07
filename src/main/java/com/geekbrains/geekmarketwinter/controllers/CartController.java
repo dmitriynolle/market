@@ -1,5 +1,6 @@
 package com.geekbrains.geekmarketwinter.controllers;
 
+import com.geekbrains.geekmarketwinter.entites.Message;
 import com.geekbrains.geekmarketwinter.services.ShoppingCartService;
 import com.geekbrains.geekmarketwinter.utils.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,10 @@ public class CartController {
 
     @GetMapping
     public String cartPage(Model model, HttpSession httpSession) {
+        Message message = new Message();
         ShoppingCart cart = shoppingCartService.getCurrentCart(httpSession);
         model.addAttribute("cart", cart);
+        model.addAttribute("message", message);
         return "cart-page";
     }
 }
