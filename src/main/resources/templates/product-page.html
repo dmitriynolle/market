@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Каталог товаров</title>
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js}"></script>
+    <script type="text/javascript"
+            th:src="@{https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js}"></script>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/main.css}">
+    <script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+</head>
+
+<body>
+
+<div th:replace="~{navigation :: navi(Shop)}"/>
+<div class="product">
+    <div class="card card_row shadow new-rounded">
+        <div class="shop_product_photo">
+            <img th:if="${product.images.size() > 0}" th:src="@{'/img/images/' + ${product.images[0].path}}">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${product.title}"></h5>
+            <div class="card-text" th:text="${product.shortDescription}"></div>
+            <div class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga est, accusantium odit
+                dignissimos pariatur explicabo! Tempore similique odio ipsum quia neque ea velit, maiores incidunt,
+                itaque dolorum quasi, dicta illum at laborum assumenda blanditiis eaque delectus quis adipisci quod esse
+                enim sequi. At non sed saepe libero accusamus? Tempora corporis qui nostrum accusantium eveniet unde
+                minima voluptatum illum delectus? Minus ipsa, iste id eveniet expedita iure perspiciatis numquam fuga
+                libero eius ab aperiam cupiditate tempora! Aliquid sit, porro ducimus labore eum, aperiam repellat
+                laborum minima quam illum molestias nisi corporis aut facilis quibusdam tempora eaque culpa! Nobis
+                corporis quam beatae, adipisci alias dolorem quis vitae id omnis? Nesciunt iusto ab qui excepturi quae
+                fuga commodi sed asperiores, ullam debitis alias nihil perferendis ipsa praesentium dolorum magnam,
+                molestias veritatis accusamus. Aut quam quaerat eaque distinctio nesciunt voluptatibus maxime
+                dignissimos consectetur quos aspernatur, ea earum repudiandae placeat natus voluptatem hic nisi ratione
+                obcaecati unde quidem itaque. Error voluptatum modi sapiente ipsum? Labore eveniet adipisci praesentium
+                blanditiis quo beatae, ducimus sed exercitationem eius error nam. Cupiditate doloremque amet ipsum ab
+                veritatis placeat laudantium corporis voluptatum doloribus repudiandae dolores error, maxime perferendis
+                sapiente earum velit rem vitae magni neque voluptatem eos nam, inventore eum.
+            </div>
+        </div>
+        <div class="card-price card-price-product">
+            <span><h3 class="m-0">Price: <span th:text="${product.price}"></span> &#8381;</h3></span>
+            <div style="display: flex; align-items: center;">
+                <span class="small pr-3" th:text="'в наличии ' + ${product.quantity}"></span>
+                <a th:name="'product_'+${product.id}" th:if="${product.quantity} !=0"
+                   th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn my-btn" th:onclick="sendName()">Add
+                    cart</a>
+            </div>
+        </div>
+        <a style="padding-right: 10px" th:href="${referet}">х</a>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -34,6 +34,7 @@
                 <th>Цена за ед.</th>
                 <th>Кол-во</th>
                 <th>Сумма</th>
+                <th>Удалить</th>
             </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@
                 <td th:text="${cartItem.itemPrice}"/>
                 <td th:text="${cartItem.quantity}"/>
                 <td th:text="${cartItem.totalPrice}"/>
+                <td><a th:href="@{'/cart/' + ${cartItem.product.id}}">Удалить</a></td>
             </tr>
             <tr>
                 <td/><td/><td/>

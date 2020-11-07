@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
@@ -16,12 +16,58 @@
 
 <body>
 
-<div th:replace="~{navigation :: navi(Profile)}" />
+<div th:replace="~{navigation :: navi(Profile)}"/>
 
-<div class="container mt-3">
-    <br>
-    <h1>Профиль</h1>
-
+<div class="product" style="justify-content: space-around">
+    <div class="mt-5">
+        <form class="card shadow new-rounded p-3">
+            <div class="form-group row p-2">
+                <label>User name</label>
+                <input readonly type="text" class="form-control" th:value="${user.userName}">
+            </div>
+            <div class="form-group row p-2">
+                <label>Last Name</label>
+                <input readonly type="text" class="form-control" th:value="${user.lastName}">
+            </div>
+            <div class="form-group row p-2">
+                <label>First Name</label>
+                <input readonly type="text" class="form-control" th:value="${user.firstName}">
+            </div>
+            <div class="row p-2">
+                <div class="form-group row pl-3 mr-1">
+                    <label>E-mail</label>
+                    <input readonly type="text" class="form-control" th:value="${user.email}">
+                </div>
+                <div class="form-group row pr-3 ml-1">
+                    <label>Phone</label>
+                    <input readonly type="text" class="form-control" th:value="${user.phone}">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="mt-5">
+        Список заказов
+        <table class="table table-hover mt-4">
+            <thead class="shadow" style="background-color: white">
+            <tr>
+                <th>№</th>
+                <th>Сумма</th>
+                <th>Сумма доставки</th>
+                <th>Адрес Доставки</th>
+                <th>Статус</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"/>
+                <td th:text="${order.price}"/>
+                <td th:text="${order.deliveryPrice}"/>
+                <td th:text="${order.deliveryAddress.address}"/>
+                <td th:text="${order.status.title}"/>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

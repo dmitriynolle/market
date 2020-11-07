@@ -17,6 +17,6 @@ public class DeliveryAddressService {
     }
 
     public List<DeliveryAddress> getUserAddresses(Long userId) {
-        return deliveryAddressRepository.findAllByUserId(userId);
+        return deliveryAddressRepository.findAllByUserId((long) 1);
     }
 }

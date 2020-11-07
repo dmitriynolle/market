@@ -8,8 +8,17 @@ public class Message {
         return name;
     }
 
+    public void setName(){
+        name = 0;
+    }
+
     @Override
     public String toString() {
         return name + "";
+    }
+
+    public int nameMinus() {
+        name--;
+        return name;
     }
 }
